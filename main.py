@@ -15,14 +15,21 @@ def my_prewitt(image):
     
     kernel = kernel/(np.sum(kernel) if np.sum(kernel) != 0 else 1)
     kernel_t = np.transpose(kernel)
-    
+
     image = cv.filter2D(image, -1, kernel)
     edge_image = cv.filter2D(image, -1, kernel_t)
     
     return edge_image
 
 def my_sobel(image):
-    pass
+    kernel = np.array([[1.0, 0.0, -1.0],
+                       [2.0, 0.0, -2.0],
+                       [1.0, 0.0, -1.0]])
+    kernel = kernel/(np.sum(kernel) if np.sum(kernel) != 0 else 1)
+    kernel_t = np.transpose(kernel)
+    
+    image = cv.filter2D(image, -1, kernel)
+    edge_image = cv.filter2D(image, -1, kernel_t)
     return edge_image
 
 def canny(slika, bottom, top):
@@ -45,3 +52,6 @@ cv.imwrite("./images/image_roberts.jpg", image_roberts)
 
 image_prewitt = my_prewitt(image)
 cv.imwrite("./images/image_prewitt.jpg", image_prewitt)
+
+image_sobel = my_sobel(image)
+cv.imwrite("./images/image_sobel.jpg", image_sobel)
