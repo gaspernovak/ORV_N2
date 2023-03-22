@@ -4,24 +4,47 @@ import cv2 as cv
 import numpy as np
 from PIL import ImageTk, Image
 
-window = tk.Tk()
-window.geometry("400x400")
+def generate_edge_images(ksize):
+    print(current_img)
+    image = np.asarray(label.image)
+    image = cv.GaussianBlur(current_img, ksize, 5)
 
+    image_contrast = det.spremeni_kontrast(image, 3, -80)
+    cv.imwrite("./images/image_contrast.jpg", image_contrast)
 
-img_cv = cv.imread("./images/image.jpg")
-img_cv = cv.cvtColor(img_cv, cv.COLOR_BGR2GRAY) # PIL uporablja RGB kot default color space
-img_cv = det.resize(img_cv, 400, 300)
+    image_roberts = det.my_roberts(image)
+    cv.imwrite("./images/image_roberts.jpg", image_roberts)
+
+    image_prewitt = det.my_prewitt(image)
+    cv.imwrite("./images/image_prewitt.jpg", image_prewitt)
+
+    image_sobel = det.my_sobel(image)
+    cv.imwrite("./images/image_sobel.jpg", image_sobel)
+
+    image_canny = det.my_canny(image, 100, 150)
+    cv.imwrite("./images/image_canny.jpg", image_canny)
+
+    print("Successfully generated images.")
 
 def slider_changed(event):
-    new_image = det.spremeni_kontrast(img_cv, slider_alpha.get(), slider_beta.get())
-    new_image = Image.fromarray(new_image)
-    new_image = ImageTk.PhotoImage(new_image)
-    label.configure(image=new_image)
-    label.image = new_image
+    global current_img
+    image = det.spremeni_kontrast(img_cv, slider_alpha.get(), slider_beta.get())
+    current_img = image 
+    pil_image = Image.fromarray(image)
+    pil_image = ImageTk.PhotoImage(pil_image)
+    label.configure(image=pil_image)
+    label.image = pil_image
+
+
+window = tk.Tk()
+window.geometry("400x420")
+
+img_cv = cv.imread("./images/image.jpg")
+img_cv = cv.cvtColor(img_cv, cv.COLOR_BGR2GRAY)
+img_cv = det.resize(img_cv, 400, 300)
 
 image = Image.fromarray(img_cv)
 image = ImageTk.PhotoImage(image)
-
 label = tk.Label(window, image=image)
 label.grid(row=0)
 
@@ -44,7 +67,14 @@ slider_beta = tk.Scale(
     command=slider_changed,
     variable=beta_value)
 
+button = tk.Button(
+    window, 
+    text="Generate edge images", 
+    command=lambda : generate_edge_images((5, 5))
+    )
+
 slider_alpha.grid(row=1, sticky="we")
 slider_beta.grid(row=2, sticky="we")
+button.grid(row=3, sticky="we")
 
 window.mainloop()
