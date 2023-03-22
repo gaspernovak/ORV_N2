@@ -30,15 +30,15 @@ beta_value = tk.DoubleVar()
 
 slider_alpha = tk.Scale(
     window, 
-    from_=0.0, 
-    to_=255.0, 
+    from_=-20.0, 
+    to_=20.0, 
     orient="horizontal",
     command=slider_changed,
     variable=alpha_value)
 
 slider_beta = tk.Scale(
     window, 
-    from_=0.0, 
+    from_=-255.0, 
     to_=255.0, 
     orient="horizontal",
     command=slider_changed,
