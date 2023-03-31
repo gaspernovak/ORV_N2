@@ -1,6 +1,7 @@
 import numpy as np
 import cv2 as cv
 import detektorji as det
+import tkinter as tk
 
 cap = cv.VideoCapture(0)
 if not cap.isOpened():
@@ -25,3 +26,4 @@ while True:
 
 cap.release()
 cv.destroyAllWindows()
+
