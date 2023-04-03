@@ -5,9 +5,8 @@ import numpy as np
 from PIL import ImageTk, Image
 
 def generate_edge_images(ksize):
-    print(current_img)
-    image = np.asarray(label.image)
-    image = cv.GaussianBlur(current_img, ksize, 5)
+    image = np.asarray(current_img)
+    image = cv.GaussianBlur(image, ksize, 5)
 
     image_contrast = det.spremeni_kontrast(image, 3, -80)
     cv.imwrite("./images/image_contrast.jpg", image_contrast)
@@ -37,11 +36,11 @@ def slider_changed(event):
 
 
 window = tk.Tk()
-window.geometry("400x420")
+window.geometry("700x720")
 
-img_cv = cv.imread("./images/image.jpg")
+img_cv = cv.imread("./images/lenna.png")
 img_cv = cv.cvtColor(img_cv, cv.COLOR_BGR2GRAY)
-img_cv = det.resize(img_cv, 400, 300)
+img_cv = det.resize(img_cv, 700, 600)
 
 image = Image.fromarray(img_cv)
 image = ImageTk.PhotoImage(image)
@@ -70,7 +69,7 @@ slider_beta = tk.Scale(
 button = tk.Button(
     window, 
     text="Generate edge images", 
-    command=lambda : generate_edge_images((5, 5))
+    command=lambda : generate_edge_images((9, 9))
     )
 
 slider_alpha.grid(row=1, sticky="we")

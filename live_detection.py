@@ -17,8 +17,13 @@ while True:
     
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
     gray = cv.GaussianBlur(gray, (3, 3), cv.BORDER_DEFAULT)
+    
     edge_image = det.my_canny(gray, 50, 150)
     inverted_edge_image = cv.bitwise_not(edge_image)
+    
+    # edge_image = det.my_prewitt(gray)
+    # inverted_edge_image = cv.bitwise_not(edge_image)
+    
     masked = cv.bitwise_and(gray, inverted_edge_image)
     cv.imshow('frame', masked)
     if cv.waitKey(1) == ord('q'):
