@@ -22,4 +22,5 @@ The project is built using the following technologies:
 
 <img width="1312" alt="image" src="https://github.com/gaspernovak/ORV_N2/assets/36790111/88ec46a6-300d-4900-9d3a-13e414ec1c97">
 
+Canny parameter comparison
 <img width="1312" alt="image" src="https://github.com/gaspernovak/ORV_N2/assets/36790111/f00cb086-c2ca-4a44-b8f7-90cc97052807">
