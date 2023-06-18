@@ -22,6 +22,8 @@ Run `main.py` to start the GUI for changing image contrast and brightness. The p
 
 Run `detektorji_demo.py` for side by side comparison.
 
+Run `live_detection.py` for realtime edge detection on camera feed.
+
 ## Demo
 <img width="812" alt="image" src="https://github.com/gaspernovak/ORV_N2/assets/36790111/24939fa8-f290-4063-8077-6e50fc62a5df">
 
