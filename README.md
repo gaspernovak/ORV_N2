@@ -19,3 +19,7 @@ The project is built using the following technologies:
 
 ## Demo
 <img width="812" alt="image" src="https://github.com/gaspernovak/ORV_N2/assets/36790111/24939fa8-f290-4063-8077-6e50fc62a5df">
+
+<img width="1312" alt="image" src="https://github.com/gaspernovak/ORV_N2/assets/36790111/88ec46a6-300d-4900-9d3a-13e414ec1c97">
+
+<img width="1312" alt="image" src="https://github.com/gaspernovak/ORV_N2/assets/36790111/f00cb086-c2ca-4a44-b8f7-90cc97052807">
