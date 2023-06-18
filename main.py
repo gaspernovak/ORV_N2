@@ -6,7 +6,7 @@ from PIL import ImageTk, Image
 
 def generate_edge_images(ksize):
     image = np.asarray(current_img)
-    image = cv.GaussianBlur(image, ksize, 5)
+    image = cv.GaussianBlur(image, ksize, 6)
 
     image_contrast = det.spremeni_kontrast(image, 3, -80)
     cv.imwrite("./images/image_contrast.jpg", image_contrast)
@@ -20,7 +20,7 @@ def generate_edge_images(ksize):
     image_sobel = det.my_sobel(image)
     cv.imwrite("./images/image_sobel.jpg", image_sobel)
 
-    image_canny = det.my_canny(image, 100, 150)
+    image_canny = det.my_canny(image, 0, 50)
     cv.imwrite("./images/image_canny.jpg", image_canny)
 
     print("Successfully generated images.")
@@ -37,7 +37,7 @@ def slider_changed(event):
 
 window = tk.Tk()
 window.geometry("700x720")
-
+window.title("Image generator")
 img_cv = cv.imread("./images/lenna.png")
 img_cv = cv.cvtColor(img_cv, cv.COLOR_BGR2GRAY)
 img_cv = det.resize(img_cv, 700, 600)
